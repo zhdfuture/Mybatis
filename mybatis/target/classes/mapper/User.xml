@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+                                                         <!--文件头-->
+<mapper namespace="test">
+    <!--
+    在此建立一些对象和数据库表之间的映射关系。
+        parameter explain:
+         id: statementID
+         parameterType: variable value
+         resultType:  all of result will be back here where it is from the result of the sql execute
+    -->
+    <!-- 根据id进行查询-->
+    <select id="queryUserById" parameterType="int" resultType="com.zh.po.User">
+        select * from user where userid = #{value};
+    </select>
+<!--根据名称查-->
+    <select id="queryUserByName" parameterType="java.lang.String" resultType="com.zh.po.User">
+        select * from user where username like #{value};
+    </select>
+    <!--增加信息-->
+    <insert id="addUser" parameterType="com.zh.po.User">
+        insert into user(username,useraddress) value (#{userName},#{userAddress});
+    </insert>
+    <!--修改-->
+    <update id="modifyUser" parameterType="com.zh.po.User">
+       update user set username = #{userName} where userid = #{userId};
+    </update>
+    <!--删除-->
+    <delete id="delUser" parameterType="int">
+        delete from user where userid=#{value};
+    </delete>
+
+</mapper>
